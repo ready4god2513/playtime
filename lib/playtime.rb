@@ -1,7 +1,7 @@
 class Integer
 
   def to_playtime
-    Playtime.new(self)
+    Playtime.new(self) unless nil?
   end
 
 end
@@ -14,7 +14,13 @@ class Playtime
   end
 
   def to_s
-    hours > 0 ? "#{hours}:#{"%02d" % minutes}:#{"%02d" % seconds}" : "#{"%02d" % minutes}:#{"%02d" % seconds}"
+    return if @time.nil?
+    
+    if hours > 0
+      "#{hours}:#{"%02d" % minutes}:#{"%02d" % seconds}"
+    else
+      "#{"%02d" % minutes}:#{"%02d" % seconds}"
+    end
   end
 
   def seconds
